@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div id="main">
-      <h2>Sum Calculator</h2>
+      <h1>Sum Calculator</h1>
 
       <input
         type="number"
@@ -36,7 +36,7 @@ const App = () => {
         onChange={handleChange}
       />
 
-      <h3>Sum: {sum}</h3>
+      <p>Sum: {sum}</p>
     </div>
   );
 };
