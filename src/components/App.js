@@ -1,13 +1,44 @@
-
-import React from "react";
-import './../styles/App.css';
+import React, { useState, useEffect } from "react";
+import "./../styles/App.css";
 
 const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
-}
+  const [numbers, setNumbers] = useState([]);
+  const [input, setInput] = useState("");
+  const [sum, setSum] = useState(0);
 
-export default App
+  // handle input change
+  const handleChange = (e) => {
+    const value = e.target.value;
+
+    setInput(value);
+
+    // only add if valid number
+    if (value !== "" && !isNaN(value)) {
+      setNumbers((prev) => [...prev, parseInt(value)]);
+    }
+  };
+
+  // async sum calculation
+  useEffect(() => {
+    setTimeout(() => {
+      const total = numbers.reduce((acc, curr) => acc + curr, 0);
+      setSum(total);
+    }, 0);
+  }, [numbers]);
+
+  return (
+    <div id="main">
+      <h2>Sum Calculator</h2>
+
+      <input
+        type="number"
+        value={input}
+        onChange={handleChange}
+      />
+
+      <h3>Sum: {sum}</h3>
+    </div>
+  );
+};
+
+export default App;
